@@ -1,6 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "../components/assets/Photo";
+import Lumix from "../components/assets/lumix.svg";
+import Micro from "../components/assets/micro.png";
+import Seta from "../components/assets/seta.svg";
+
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -11,57 +17,26 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-          </h1>
-          <div className="flex justify-center items-center space-x-2">
-            <p className="my-2 font-medium">Connected Address:</p>
-            <Address address={connectedAddress} />
+      <div className="bg-[#068DB8] h-[83vh] w-full flex flex-col">
+        <div className="flex flex-row">
+          <Photo className="h-[500px] w-[500px] translate-y-48 translate-x-36" />
+          <div className="translate-x-[60vh] ">
+            <Image className="translate-x-[30vh] translate-y-[2vh]" src={Lumix} width={300} height={300} alt="Picture of the author" />
           </div>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
+          <div className="mt-24">
+            <h1 className="text-white text-[60px] font-bold font-inter translate-y-36">
+              Be an independent journalist
+            </h1>
+            <p className="text-white text-[35px] font-bold font-inter translate-y-36  mt-10 ml-10">
+              See news from all over the <br /> world without censorship,
+              <br /> come be an unjourn.
+            </p>
+            <Image className="translate-y-20 -translate-x-20" src={Micro} width={250} height={250} alt="Picture of the author" />
+          </div>
         </div>
-
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-          </div>
+        <div className=" flex flex-col justify-center items-center translate-y-[20vh]">
+          <Image src={Seta} width={40} height={40} alt="Picture of the author" />
+          <h2 className="font-bold text-[25px]">know more</h2>
         </div>
       </div>
     </>
