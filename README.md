@@ -13,3 +13,29 @@ The scroll network is responsible for providing scalability, speed, security and
 The platform not only focuses on protecting and supporting independent journalists but also on bringing critical and frequently hidden issues to the forefront. By providing a secure environment and a dependable payment structure, this social network empowers these professionals to expose abuses, corruption, and human rights violations, thereby contributing to a more informed and conscious global community.
 
 UnJourn website represents an innovative and necessary response to independent journalism in a rapidly changing world where freedom of expression and truth are essential values. With technologies like Scroll and , it becomes a powerful tool for independent journalists who are willing to risk everything to keep us informed about the most pressing issues of our time.
+
+## Documentation
+
+
+## Technologies
+
+- Next
+- TailwindCSS
+- Scroll Network(Testnet)
+- Chainlink
+- Near
+- Solidity
+- Typescript
+- Node
+  
+## Deployed application
+
+
+
+## How to run locally
+
+
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
