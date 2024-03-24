@@ -18,8 +18,8 @@ const MostFoll = () => {
   }, []);
   return (
     <div className="text-white border border-white border-opacity-25 bg-black h-[36vh] w-[25vw] rounded-lg translate-y-28 translate-x-40">
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">Most Followers</h2>
+      <div className="card-body w-full">
+        <h2 className="card-title text-center">Most Followers</h2>
         {profiles.map((profile, index) => {
           return (
             <div className="flex mt-4" key={index}>

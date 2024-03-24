@@ -3,12 +3,14 @@
 import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import { client, fetchExploreProfiles, fetchExplorePublications, getPublications } from "../../api2";
+import Integration from "../../components/Integration";
 import MostFoll from "../../components/MostFoll";
 import Noticia from "../../components/NoticiaComponente";
 import Logo from "../../components/assets/Unjourn.svg";
 import Lapis from "../../components/assets/fi-rr-pencil.svg";
+import result from "/graphql/generated";
 import axios, { AxiosResponse } from "axios";
-import result from "~~/graphql/generated";
+import { Wallet } from "ethers";
 
 const pinataApiKey = "fc6e72bc52d5f0321041";
 const pinataSecretApiKey = "b3a1c121eb108862df67bebd7a3767d6034857df50b0ba5d377c7c33e0169e4e";
@@ -66,8 +68,7 @@ const noticias = () => {
       });
 
       const res = await client.publication.postOnchain({
-        // contentURI: `ipfs://${result}`, // or arweave
-        contentURI: `ipfs://QmbB1kr63iGUHLFfibtHjabrpoQW41xBXMTZRTC8dQ1hRG`, // or arweave
+        contentURI: `ipfs://${result}`, // or arweave
       });
       console.log("Data submitted successfully:", result);
       console.log("lens:", res);
@@ -209,32 +210,6 @@ const noticias = () => {
             role="tab"
             className="tab text-white translate-y-12 translate-x-10"
             aria-label="America"
-          />
-          <div role="tabpanel" className="tab-content p-10">
-            <div className="flex flex-col">
-              {posts.map((post, index) => {
-                return (
-                  <Noticia
-                    title={post.metadata.appId}
-                    content={post.metadata.content}
-                    comments={post.stats.comments}
-                    upvoted={post.stats.upvotes}
-                    mirrors={post.stats.mirrors}
-                    endereco={post.by.ownedBy.address}
-                    createdAt={post.createdAt}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
-          </div>
-
-          <input
-            type="radio"
-            name="my_tabs_1"
-            role="tab"
-            className="tab text-white translate-y-12 translate-x-10"
-            aria-label="Middle East"
           />
           <div role="tabpanel" className="tab-content p-10">
             <div className="flex flex-col">

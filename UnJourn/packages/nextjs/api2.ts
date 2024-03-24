@@ -171,7 +171,7 @@ export const postOnChain = async (profileId, address) => {
     contentURI: `ipfs://${ipfsResponse.path}`,
   };
 
-  const { id, typedData } = await creaatePostTypedData(request);
+  const { id, typedData } = await createPostTypedData(request);
   console.log("post onchain: result", { id, typedData });
 
   console.log("post onchain: typedData", typedData);
