@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { authenticate, authenticate2, generateChallenge } from "../../../api2";
 import { NetworkOptions } from "./NetworkOptions";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { getAddress } from "viem";
 import { Address, useDisconnect } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 import {
   ArrowLeftOnRectangleIcon,
   ArrowTopRightOnSquareIcon,
@@ -43,6 +45,47 @@ export const AddressInfoDropdown = ({
     dropdownRef.current?.removeAttribute("open");
   };
   useOutsideClick(dropdownRef, closeDropdown);
+
+  const { address: connectedAddress } = useAccount();
+  const endereco = connectedAddress;
+  const connected = !!endereco;
+
+  const { signMessageAsync } = useSignMessage();
+
+  const signIn = async () => {
+    try {
+      console.log(connectedAddress);
+      if (!connected) {
+        return alert("Please connect your wallet first");
+      }
+      const challenge = await generateChallenge(endereco);
+      const signature = await signMessageAsync({ message: challenge.text });
+      await authenticate(challenge.id, signature);
+
+      const credentials = window.localStorage.getItem("lens.development.credentials");
+      if (credentials !== null) {
+        const jsonCredentials = JSON.parse(credentials);
+        const data = await authenticate2(jsonCredentials.data.refreshToken);
+        console.log("authenticate2", data);
+
+        jsonCredentials.data.accessToken = data.refresh.accessToken;
+        const newData = JSON.stringify(jsonCredentials);
+        window.localStorage.setItem("lens.development.credentials", newData);
+        window.localStorage.setItem("refreshToken", data.refresh.refreshToken);
+        window.localStorage.setItem("accessToken", data.refresh.accessToken);
+      } else {
+        alert("Log in to your Lens account");
+      }
+
+      console.log({ challenge });
+      console.log({ signature });
+    } catch (error) {
+      console.error(error);
+      alert("Error signing in");
+    } finally {
+      window.location.href = "http://localhost:3000/noticias";
+    }
+  };
 
   return (
     <>
@@ -87,6 +130,12 @@ export const AddressInfoDropdown = ({
                 </div>
               </CopyToClipboard>
             )}
+          </li>
+          <li>
+            <label htmlFor="">
+              //icone lens
+              <button onClick={signIn}>SignIn in lens</button>
+            </label>
           </li>
           <li className={selectingNetwork ? "hidden" : ""}>
             <label htmlFor="qrcode-modal" className="btn-sm !rounded-xl flex gap-3 py-3">
