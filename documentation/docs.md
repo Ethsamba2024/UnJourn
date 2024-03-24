@@ -4,7 +4,7 @@
 
 <p align="center"><span style="font-size: 24px;">EthSamba 2024</span></p>
 
-# UnJorn
+# UnJourn
 
 ## Authors
 
@@ -19,7 +19,7 @@
 *Yago Phellipe Matos Lopes*
 
 ## Summary
-- [UnJorn](#unjorn)
+- [UnJourn](#unjourn)
   - [Authors](#authors)
   - [Summary](#summary)
   - [2.0 - Bussiness analysis:](#20---bussiness-analysis)
@@ -33,7 +33,7 @@
       - [Gain creators:](#gain-creators)
   - [Functional Requirements](#functional-requirements)
 
-UnJorn is a groundbreaking social network that utilizes Lens Protocol, Scalffold, Chainlink and Scroll to empower independent journalists globally. Its main objective is to ensure the security and independence of journalists reporting on critical issues like corruption, war, and repression. The platform not only safeguards journalists but also sheds light on hidden issues, contributing to a more informed global community. UnJorn is an innovative response to the changing world, where freedom of expression and truth are paramount. It serves as a vital tool for journalists dedicated to informing us about pressing global matters.
+UnJourn is a groundbreaking social network that utilizes Lens Protocol, Scalffold and Scroll to empower independent journalists globally. Its main objective is to ensure the security and independence of journalists reporting on critical issues like corruption, war, and repression. The platform not only safeguards journalists but also sheds light on hidden issues, contributing to a more informed global community. UnJourn is an innovative response to the changing world, where freedom of expression and truth are paramount. It serves as a vital tool for journalists dedicated to informing us about pressing global matters.
 
 ## 2.0 - Bussiness analysis:
 
@@ -51,7 +51,7 @@ UnJorn is a groundbreaking social network that utilizes Lens Protocol, Scalffold
 
 #### Pains:
 
-*Technical Expertise*: Some journalists may lack the technical expertise required to effectively use the Nostr and Lightning Network technologies, potentially making it challenging for them to fully benefit from the platform.
+*Technical Expertise*: Some journalists may lack the technical expertise required to effectively use the Scroll Network and Lens Protocol technologies, potentially making it challenging for them to fully benefit from the platform.
 
 *Negative Feedback and Criticism*: Exposing themselves to a broader audience can lead to negative feedback and criticism, which may affect the emotional well-being and motivation of journalists
 
@@ -65,7 +65,7 @@ UnJorn is a groundbreaking social network that utilizes Lens Protocol, Scalffold
 
 *Products & Services*:
 
-UnJorn is the decentralized social network platform that empowers independent journalists to report crucial news, such as corruption and repression, through the integration of Nostr and Lightning Network technologies, ensuring freedom, security, and fair recognition.
+UnJourn is the decentralized social network platform that empowers independent journalists to report crucial news, such as corruption and repression, through the integration of Scroll and Lens Protocol technologies, ensuring freedom, security, and fair recognition.
 
 #### Pain relievers:
 
@@ -77,7 +77,7 @@ UnJorn is the decentralized social network platform that empowers independent jo
 
 *Secure Payment System*: The integration of the Lightning Network ensures that journalists receive prompt and secure payments for their work, providing financial stability and motivation.
 
-*Highlighting Critical Issues*: UnJorn shines a light on frequently hidden issues, helping raise awareness about critical problems worldwide.
+*Highlighting Critical Issues*: UnJourn shines a light on frequently hidden issues, helping raise awareness about critical problems worldwide.
 
 ## Functional Requirements
 
