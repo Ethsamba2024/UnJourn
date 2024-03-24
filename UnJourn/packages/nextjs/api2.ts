@@ -1,8 +1,4 @@
 // utils.js
-import { USE_GASLESS, explicitStart } from "./app/authentication/config";
-import { signedTypeData, splitSignature } from "./app/authentication/ethers.service";
-import { omit } from "./app/authentication/helpers";
-import { LENS_HUB_ABI } from "./utils/abis";
 import { uploadIpfs } from "./utils/ipfs";
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, gql } from "@apollo/client";
 import {
@@ -16,8 +12,6 @@ import {
 } from "@lens-protocol/client";
 import { Wallet, ethers, utils } from "ethers";
 import { useSignMessage } from "wagmi";
-
-const LENS_HUB_CONTRACT = "0xd7B3481De00995046C7850bCe9a5196B7605c367";
 
 const APIURL = "https://api-v2-mumbai-live.lens.dev/";
 
@@ -52,13 +46,14 @@ export const fetchExploreProfiles = async () => {
     orderBy: ExploreProfilesOrderByType.MostFollowers,
   });
   console.log("Perfis", response);
+  return response;
 };
 
 export const fetchExplorePublications = async () => {
   const result = await client.explore.publications({
     orderBy: ExplorePublicationsOrderByType.Latest,
   });
-  console.log("Posts", result);
+  return result;
 };
 
 export const autenticateUser = async () => {
@@ -134,16 +129,16 @@ export const authenticate2 = async refreshToken => {
   return response.data;
 };
 
-export const creaatePostTypedData = async (requests: OnchainPostRequest) => {
-  const response = await apolloClient.mutate({
-    mutation: CreateOnchainPostTypedDataDocument,
-    variables: {
-      requests,
-    },
-  });
+// export const creaatePostTypedData = async (requests: OnchainPostRequest) => {
+//   const response = await apolloClient.mutate({
+//     mutation: ,
+//     variables: {
+//       requests,
+//     },
+//   });
 
-  return response.data!.createOnchainPostTypedData;
-};
+//   return response.data!.createOnchainPostTypedData;
+// };
 
 const publicationMetadataTextOnly = {
   $schema: "https://json-schemas.lens.dev/publications/text-only/3.0.0.json",

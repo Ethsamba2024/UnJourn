@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Image from "next/image";
+import { fetchExploreProfiles, fetchExplorePublications, getPublications } from "../../api2";
 import MostFoll from "../../components/MostFoll";
 import Noticia from "../../components/NoticiaComponente";
 import Logo from "../../components/assets/Unjourn.svg";
 import Lapis from "../../components/assets/fi-rr-pencil.svg";
-import { useCreatePost } from "../../lib/useCreatePost";
 
 const noticias = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [posts, setPosts] = useState<any>([]); // [title, description, content
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
@@ -21,6 +22,31 @@ const noticias = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const fetchPosts = async () => {
+    const posts = await fetchExplorePublications();
+    console.log(posts.items);
+    return posts.items;
+  };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const postsData = await fetchExplorePublications();
+        setPosts(postsData.items);
+        console.log(postsData.items);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    const fetchProfiles = async () => {
+      const profiles = await fetchExploreProfiles();
+      console.log(profiles);
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div className="h-auto w-full flex flex-col bg-black p-10 pl-5 pr-5 text-white">
@@ -53,9 +79,20 @@ const noticias = () => {
           />
           <div role="tabpanel" className="tab-content p-10 text-white">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -66,11 +103,22 @@ const noticias = () => {
             className="tab text-white translate-y-12 translate-x-10"
             aria-label="Asian"
           />
-          <div role="tabpanel" className="tab-content">
+          <div role="tabpanel" className="tab-content p-10 text-white">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -83,9 +131,20 @@ const noticias = () => {
           />
           <div role="tabpanel" className="tab-content p-10">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -98,9 +157,20 @@ const noticias = () => {
           />
           <div role="tabpanel" className="tab-content p-10">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -113,9 +183,20 @@ const noticias = () => {
           />
           <div role="tabpanel" className="tab-content p-10">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -128,9 +209,20 @@ const noticias = () => {
           />
           <div role="tabpanel" className="tab-content p-10">
             <div className="flex flex-col">
-              <Noticia />
-              <Noticia />
-              <Noticia />
+              {posts.map((post, index) => {
+                return (
+                  <Noticia
+                    title={post.metadata.appId}
+                    content={post.metadata.content}
+                    comments={post.stats.comments}
+                    upvoted={post.stats.upvotes}
+                    mirrors={post.stats.mirrors}
+                    endereco={post.by.ownedBy.address}
+                    createdAt={post.createdAt}
+                    key={index}
+                  />
+                );
+              })}
             </div>
           </div>
           <div>
