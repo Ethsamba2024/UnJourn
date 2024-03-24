@@ -18,13 +18,9 @@ type HeaderMenuLink = {
 export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
-    href: "/",
+    href: "/noticias",
   },
-  {
-    label: "NewsLetter",
-    href: "/newsletter",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
+  
 ];
 
 export const HeaderMenuLinks = () => {
@@ -40,7 +36,7 @@ export const HeaderMenuLinks = () => {
               href={href}
               passHref
               className={`${
-                isActive ? "bg-secondary shadow-md" : ""
+                isActive ? "bg-white text-black shadow-md" : ""
               } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
             >
               {icon}

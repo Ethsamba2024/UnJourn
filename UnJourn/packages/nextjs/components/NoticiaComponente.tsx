@@ -8,7 +8,7 @@ const NoticiaComponente = () => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="pl-36">
+    <div className="">
       <div
         className={`card card-compact w-[45vw] shadow-xl mt-10 pr-10 pt-4 text-white pl-10 pb-10 border border-white border-opacity-25 ${hovered ? 'bg-gray-700' : 'bg-black'}`}
         onMouseEnter={() => setHovered(true)}
