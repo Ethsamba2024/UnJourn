@@ -18,7 +18,7 @@ const NoticiaComponente = props => {
       >
         <div className="card-body">
           <div className="flex justify-start items-center">
-            <p className="font-bold text-[18px] text-white">{props.endereco}</p>
+            <p className="font-bold text-[14px] text-white">{props.endereco}</p>
             <p className="translate-x-28">{props.createdAt}</p>
           </div>
           <h2 className="card-title flex justify-center">UnJourn</h2>

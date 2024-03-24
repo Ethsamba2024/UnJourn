@@ -28,8 +28,8 @@ const MostFoll = () => {
                   <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                 </div>
               </div>
-              <p>NewMedia</p>
-              <p className="ml-10">npub1...khlak</p>
+              <p>{profile.handle.localName}</p>
+              <p className="ml-10">{profile.id}</p>
             </div>
           );
         })}
