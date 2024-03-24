@@ -9,6 +9,7 @@ import { TransactionsTable } from "./TransactionsTable";
 import { createPublicClient, http } from "viem";
 import { hardhat } from "viem/chains";
 import { useFetchBlocks } from "~~/hooks/scaffold-eth";
+import { readContracts } from 'wagmi'
 
 type AddressCodeTabProps = {
   bytecode: string;
