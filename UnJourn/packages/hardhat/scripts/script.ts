@@ -12,7 +12,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
-    When deploying to live networks (e.g `yarn deploy --network goerli`), the deployer account
+    When deploying to live networks (e.g `yarn deploy --network sepolia`), the deployer account
     should have sufficient balance to pay for the gas fees for contract creation.
 
     You can generate a random account with `yarn generate` which will fill DEPLOYER_PRIVATE_KEY
@@ -22,7 +22,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("UnjournNewsLetter", {
+  await deploy("NewsContract", {
     from: deployer,
     // Contract constructor arguments
     args: [deployer],
@@ -33,7 +33,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("UnjournNewsLetter", deployer);
+  const yourContract = await hre.ethers.getContract<Contract>("NewsContract", deployer);
+  console.log("👋 Initial greeting:", await yourContract.greeting());
 };
 
 export default deployYourContract;
