@@ -17,6 +17,10 @@ const APIURL = "https://api-v2-mumbai-live.lens.dev/";
 
 export const apolloClient = new ApolloClient({
   uri: APIURL,
+  headers: {
+    "Content-Type": "application/json",
+    "x-access-token": window.localStorage.getItem("accessToken") || "",
+  },
   cache: new InMemoryCache(),
 });
 
@@ -37,6 +41,7 @@ class LocalStorageProvider implements IStorageProvider {
 const lensClientConfig = {
   environment: development,
   storage: new LocalStorageProvider(),
+  ApolloClient: apolloClient,
 };
 
 export const client = new LensClient(lensClientConfig);

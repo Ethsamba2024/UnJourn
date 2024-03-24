@@ -2,11 +2,41 @@
 
 import { use, useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchExploreProfiles, fetchExplorePublications, getPublications } from "../../api2";
+import { client, fetchExploreProfiles, fetchExplorePublications, getPublications } from "../../api2";
 import MostFoll from "../../components/MostFoll";
 import Noticia from "../../components/NoticiaComponente";
 import Logo from "../../components/assets/Unjourn.svg";
 import Lapis from "../../components/assets/fi-rr-pencil.svg";
+import axios, { AxiosResponse } from "axios";
+import result from "~~/graphql/generated";
+
+const pinataApiKey = "fc6e72bc52d5f0321041";
+const pinataSecretApiKey = "b3a1c121eb108862df67bebd7a3767d6034857df50b0ba5d377c7c33e0169e4e";
+
+type FormData = {
+  name: string;
+  email: string;
+  wallet: string;
+};
+export async function postToPinata(data: { name: string; description: string; image: string; attributes: any[] }) {
+  try {
+    const response: AxiosResponse<{ IpfsHash: { hash: string } }> = await axios.post(
+      "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          pinata_api_key: pinataApiKey,
+          pinata_secret_api_key: pinataSecretApiKey,
+        },
+      },
+    );
+
+    return response.data.IpfsHash;
+  } catch (error) {
+    throw error;
+  }
+}
 
 const noticias = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +51,31 @@ const noticias = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault(); // Prevent default form submission
+
+    try {
+      // Call postToPinata function to submit data
+      const result = await postToPinata({
+        name: title,
+        description: content,
+        image: "", // You might want to add an image here if applicable
+        attributes: [], // Add any additional attributes if needed
+      });
+
+      const res = await client.publication.postOnchain({
+        // contentURI: `ipfs://${result}`, // or arweave
+        contentURI: `ipfs://QmbB1kr63iGUHLFfibtHjabrpoQW41xBXMTZRTC8dQ1hRG`, // or arweave
+      });
+      console.log("Data submitted successfully:", result);
+      console.log("lens:", res);
+      closeModal(); // Close modal after successful submission
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      // Handle error
+    }
   };
 
   const fetchPosts = async () => {
@@ -246,7 +301,7 @@ const noticias = () => {
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-black p-8 rounded-lg flex flex-col text-center justify-center w-[500px] h-[600px]">
             <h2 className="text-white text-bold text-[25px]">Create a notice</h2>
-            <form className="text-black flex flex-col items-center justify-center">
+            <form onSubmit={handleSubmit} className="text-black flex flex-col items-center justify-center">
               <label className="form-control w-full max-w-xs mt-10">
                 <input
                   type="text"
@@ -259,11 +314,14 @@ const noticias = () => {
               <label className="form-control w-full max-w-xs mt-10">
                 <textarea
                   className="textarea textarea-bordered"
-                  placeholder="Bio"
+                  placeholder="Content"
                   onChange={e => setContent(e.target.value)}
                 ></textarea>
               </label>
-              <button className="rounded-full bg-blue-500 text-white w-64 h-16 text-[20px] font-bold mt-10">
+              <button
+                type="submit"
+                className="rounded-full bg-blue-500 text-white w-64 h-16 text-[20px] font-bold mt-10"
+              >
                 Post
               </button>
             </form>
