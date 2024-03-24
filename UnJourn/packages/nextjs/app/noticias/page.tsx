@@ -6,9 +6,13 @@ import MostFoll from "../../components/MostFoll";
 import Noticia from "../../components/NoticiaComponente";
 import Logo from "../../components/assets/Unjourn.svg";
 import Lapis from "../../components/assets/fi-rr-pencil.svg";
+import { useCreatePost } from "../../lib/useCreatePost";
 
 const noticias = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [content, setContent] = useState("");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -17,6 +21,7 @@ const noticias = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <div className="h-auto w-full flex flex-col bg-black p-10 pl-5 pr-5 text-white">
       <div className="flex mt-20">
@@ -151,13 +156,24 @@ const noticias = () => {
             <h2 className="text-white text-bold text-[25px]">Create a notice</h2>
             <form className="text-black flex flex-col items-center justify-center">
               <label className="form-control w-full max-w-xs mt-10">
-                <input type="text" placeholder="Insert Title" className="input input-bordered w-full max-w-xs" />
+                <input
+                  type="text"
+                  placeholder="Insert Title"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={e => setTitle(e.target.value)}
+                />
               </label>
 
               <label className="form-control w-full max-w-xs mt-10">
-                <textarea className="textarea textarea-bordered" placeholder="Bio"></textarea>
+                <textarea
+                  className="textarea textarea-bordered"
+                  placeholder="Bio"
+                  onChange={e => setContent(e.target.value)}
+                ></textarea>
               </label>
-              <button className="rounded-full bg-blue-500 text-white w-64 h-16 text-[20px] font-bold mt-10">Post</button>
+              <button className="rounded-full bg-blue-500 text-white w-64 h-16 text-[20px] font-bold mt-10">
+                Post
+              </button>
             </form>
             <button onClick={closeModal}>Fechar</button>
           </div>
