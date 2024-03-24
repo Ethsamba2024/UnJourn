@@ -83,7 +83,7 @@ export const AddressInfoDropdown = ({
       console.error(error);
       alert("Error signing in");
     } finally {
-      window.location.href = "http://localhost:3000/noticias";
+      window.location.href = "http://ec2-52-23-168-137.compute-1.amazonaws.com:3000/noticias";
     }
   };
 
