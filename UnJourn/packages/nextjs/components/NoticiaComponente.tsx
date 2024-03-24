@@ -17,7 +17,6 @@ const NoticiaComponente = () => {
         <div className="card-body">
           <div className="flex justify-start items-center">
             <p className="font-bold text-[18px]">The Splanning</p>
-            <p className="ml-10 -translate-x-20">npub1...khlak</p>
             <p className="translate-x-36">November 2</p>
           </div>
           <h2 className="card-title flex justify-center">The Title of the New Notice</h2>
